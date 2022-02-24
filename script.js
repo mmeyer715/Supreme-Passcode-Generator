@@ -8,9 +8,6 @@ function randomElement(arr) {
   return arr[index];
 }
 
-
-
-
 function generatePassword() {
   //defining password length
   var passwordLength = window.prompt("How many characters would you like your password to have? (between 8-128)", 15);
@@ -19,13 +16,13 @@ function generatePassword() {
     return passwordLength
   } 
   //defining numbers
-  var char1 = window.prompt("Would you like numbers included?", "yes");
+  var char1 = window.confirm("Would you like numbers included?");
   //defining lowercase
-  var char2 = window.prompt("Would you like lowercase characters?", "yes");
+  var char2 = window.confirm("Would you like lowercase characters?");
   //defining uppercase
-  var char3 = window.prompt("Would you like uppercase characters?", "yes");
+  var char3 = window.confirm("Would you like uppercase characters?");
   //defininf special characters
-  var char4 = window.prompt("Would you like special characters?", "yes");
+  var char4 = window.confirm("Would you like special characters?");
 
   var digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   var lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -33,27 +30,27 @@ function generatePassword() {
   var special = ['!', '@', '#', '$', '^', '&', '*', '?', '_', '-'];
   var password = '';
 
-  for(var i = 0; i < 4 % passwordLength; i++) {
-    if (char1 === "yes" || char1 === "YES") {
-      password = password + randomElement(digits);
-    } else {
-      password = password
-    }
-    if (char2 === "yes" || char2 === "YES") {
-      password = password + randomElement(lower);
-    } else {
-      password = password
-    } 
-    if (char3 === "yes" || char3 === "YES") {
-      password = password + randomElement(upper);
-    } else {
-      password = password
-    }
-    if (char4 === "yes" || char4 === "YES") {
-      password = password + randomElement(special);
-    } else {
-      password = password
-    }
+  var possChoices = []
+  
+  if (char1 === true) {
+    possChoices = possChoices.concat(digits);
+    password = password + randomElement(digits);
+  }
+  if (char2 === true) {
+    possChoices = possChoices.concat(lower);
+    password = password + randomElement(lower);
+  }
+  if (char3 === true) {
+    possChoices = possChoices.concat(upper);
+    password = password + randomElement(upper);
+  }
+  if (char4 === true) {
+    possChoices = possChoices.concat(special);
+    password = password + randomElement(special);
+  }
+
+  for(var i = password.length; i < passwordLength; i++) {
+    password = password + randomElement(possChoices);
   }
   return password
 }
