@@ -38,7 +38,7 @@ function generatePassword() {
   var password = '';
 
   // adding empty array to add password criteria to
-  var possChoices = []
+  var possChoices = [];
 
   // if char1 true add digits to possChoices array and validating selected criteria is added
   if (char1 === true) {
@@ -60,7 +60,6 @@ function generatePassword() {
     possChoices = possChoices.concat(special);
     password = password + randomElement(special);
   }
-  
   // creating password with defined criteria
   for(var i = password.length; i < passwordLength; i++) {
     password = password + randomElement(possChoices);
