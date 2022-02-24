@@ -31,20 +31,31 @@ function generatePassword() {
   var lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   var upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   var special = ['!', '@', '#', '$', '^', '&', '*', '?', '_', '-'];
-  
-  for(var i = 0; i < passwordLength; i++) {
+  var password = '';
+
+  for(var i = 0; i < 4 % passwordLength; i++) {
     if (char1 === "yes" || char1 === "YES") {
-      char1 = randomElement(digits);
+      password = password + randomElement(digits);
     } else {
-      return char1 === false
+      password = password
     }
     if (char2 === "yes" || char2 === "YES") {
-      char2 = randomElement(lower);
-    // } else {
-    //   char2 = null
+      password = password + randomElement(lower);
+    } else {
+      password = password
+    } 
+    if (char3 === "yes" || char3 === "YES") {
+      password = password + randomElement(upper);
+    } else {
+      password = password
+    }
+    if (char4 === "yes" || char4 === "YES") {
+      password = password + randomElement(special);
+    } else {
+      password = password
     }
   }
-  return password = char1 + char2
+  return password
 }
 
 function writePassword() {
